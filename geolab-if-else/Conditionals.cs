@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -80,9 +82,13 @@ namespace geolab_if_else
 
         }
 
-        public void passwordTester(string password, string usersInput)
+        public void passwordTester(string password)
+
         {
-            if(usersInput == password)
+            Console.WriteLine("Enter your password:");
+            string input = Console.ReadLine();
+
+            if (input == password)
             {
                 Console.WriteLine("Access Granted");
             }
@@ -92,6 +98,151 @@ namespace geolab_if_else
             }
         }
 
+        public double highestNumber(double num1, double num2, double num3)
+        {
+            double highest = 0;
+            if(num1 > num2 || num1 == num2)
+            {
+                highest = num1;
+                if(highest < num3 || highest == num3)
+                {
+                    highest = num3;
+                }
+                else
+                {
+                    return highest;
+                }
+            }
+            else
+            {
+                highest = num2;
+
+            if(highest < num3 || highest == num3)
+                {
+                    highest = num3;
+                }
+
+            }
+            return highest;
+        }
+
+        public double calculator() {
+
+            Console.WriteLine("Enter First Number:");
+            string num1 = Console.ReadLine();
+            Console.WriteLine("Choose Operator: \n 1. + \n 2. - \n 3. * \n 4. / \n");
+            string operation = Console.ReadLine();
+            Console.WriteLine("Enter Second Number:");
+            string num2 = Console.ReadLine();
+
+            double result = 0;
+            double parsedNumber = Double.Parse(num1);
+            double parsedNumber2 = Double.Parse(num2);
+   
+
+            switch(operation) {
+
+                case "1":
+                {
+                        result = parsedNumber + parsedNumber2;
+                        break;
+                }
+                case "2":
+                    {
+                        result = parsedNumber - parsedNumber2;
+                        break;
+                    }
+                case "3":
+                    {
+                        result = parsedNumber * parsedNumber2;
+                        break;
+                    }
+                    case "4":
+                    {
+                        result = parsedNumber / parsedNumber2;
+                        break;
+                    }
+                default:
+                    {
+                        throw new ArgumentException();
+                    }
+
+            }
+                    return result;
+        }
+
+        public string legalAgeElection(string age)
+        {
+            string result;
+
+            int parsedAge = Int16.Parse(age);
+
+            if(parsedAge >= 18)
+            {
+                result = "You have legal age to parcipicate in the election";
+            }
+            else
+            {
+                result = "You are underaged";
+            }
+            return result;
+        }
+
+        public void greetBasedOnTime(int hour)
+        {
+            if(hour >= 5 && hour <= 11)
+            {
+                Console.WriteLine("Good Morning");
+            }else if(hour >= 12 && hour <= 16) {
+                Console.WriteLine("Good Afternoon");
+            }else if(hour >= 17 && hour <= 20)
+            {
+                Console.WriteLine("Good Evening");
+            }
+            else
+            {
+                Console.WriteLine("Good Night");
+            }
+        }
+
+        public void calculateDiscount(double total)
+        {
+            double disscount = 0;
+            if(total >= 100 && total <= 500)
+            {
+                disscount = total * 0.10;
+            }else if(total > 500)
+            {
+                disscount = total * 0.20;
+            }
+
+            double finalPrice = total - disscount;
+
+            Console.WriteLine("disscount: " + finalPrice);
+        }
+
+
+        public static void checkPurchaseEligibility(int age, string country)
+        {
+            if((country == "US" && age >= 21) || (country != "US" && age >= 18))
+            {
+                Console.WriteLine("you are able to buy!");
+            }
+            else
+            {
+                Console.WriteLine("you arent able to buy!");
+            }
+        }
+
+        public void checkLoanEligibility(int age, double income, string hasCoApplicant) { 
+        
+            if(age >= 18 && (income >= 2500 || hasCoApplicant.ToLower() == "yes"))
+            {
+                Console.WriteLine("you can get a loan");
+            }
+            else Console.WriteLine("you cant get a loan");
+        }
       
+
     }
 }
